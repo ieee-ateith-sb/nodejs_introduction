@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
   })
 })
 
-/* GET users listing. */
+
 router.post('/', function (req, res, next) {
   let username = req.body.username
   let password = req.body.password
@@ -37,6 +37,28 @@ router.post('/', function (req, res, next) {
     .then((user) => {
       res.json(user)
     })
+})
+
+
+/* GET users listing. */
+router.delete('/:id', function (req, res, next) {
+  let id = req.params.id
+
+  models.Users.deleteOne({ _id: id }, function (err) {
+    if(err){
+      res.json({
+        error: {
+          message: err.message
+        }
+      })
+    }
+    else {
+      res.json({
+        message: "User deleted."
+      })
+    }
+  });
+
 })
 
 module.exports = router
