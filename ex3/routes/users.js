@@ -37,5 +37,6 @@ router.post('/', function (req, res, next) {
     .then((user) => {
       res.json(user)
     })
+})
 
-  module.exports = router
+module.exports = router
